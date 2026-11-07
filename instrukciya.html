@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Уникализатор — как установить</title>
+<meta name="description" content="Короткая инструкция: как установить Уникализатор на iPhone, Android и компьютер и ввести код доступа.">
+<meta property="og:title" content="Уникализатор — как установить">
+<meta property="og:description" content="Установите приложение, затем введите код доступа. 3 минуты.">
+<meta property="og:image" content="https://mdandreeva1985.github.io/unikalizator-site/og.png">
+<meta name="theme-color" content="#ff5a36">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* Инструкция: одна узкая колонка, вкладки устройств, шаги по порядку */
+:root{--bg:#f5f3f0;--surface:#fff;--ink:#151418;--muted:#6e6a72;--line:#e7e3dd;--soft:#eeeae4;--a1:#ff5a36;--a2:#ff9d3c;--accent:#f2542d;
+  --f-display:"Unbounded","Onest",system-ui,sans-serif;--f-body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111013;--surface:#1b1a1e;--ink:#f3f1ee;--muted:#a39fa8;--line:#2b2a30;--soft:#252429;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111013;--surface:#1b1a1e;--ink:#f3f1ee;--muted:#a39fa8;--line:#2b2a30;--soft:#252429;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--f-body);
+  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+main{max-width:640px;margin:0 auto;padding-block:max(28px,env(safe-area-inset-top)) 48px;display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--f-display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.08;font-weight:800}
+h2{font-size:20px;font-weight:600}
+p{margin:0}
+.grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted)}
+.important{background:linear-gradient(150deg,var(--a1),var(--a2));color:#fff;border-radius:20px;padding:18px 20px;font-weight:600}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{flex:1 1 0;min-width:90px;height:48px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 16px var(--f-body);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible,a:focus-visible{outline:3px solid var(--a2);outline-offset:2px}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px 16px 62px;position:relative;min-width:0}
+ol.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font:700 16px/32px var(--f-body);text-align:center}
+ol.steps b{font-weight:600}
+.muted{color:var(--muted);font-size:15px}
+.kbd{display:inline-block;padding:1px 8px;border-radius:8px;background:var(--soft);font-weight:600;white-space:nowrap}
+.panel[hidden]{display:none}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.box ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+a{color:var(--accent)}
+footer{color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <h1>Как установить <span class="grad">Уникализатор</span></h1>
+    <p class="lead">Займёт 2–3 минуты. Сначала установите приложение, и только потом вводите код доступа.</p>
+  </header>
+
+  <div class="important">Важно: вводите код уже в установленном приложении — открытом с иконки на экране, а не в браузере. Один код работает на двух устройствах, например на телефоне и компьютере.</div>
+
+  <div class="tabs" role="tablist" aria-label="Устройство">
+    <button role="tab" id="t-ios" aria-controls="p-ios" aria-selected="true">iPhone</button>
+    <button role="tab" id="t-android" aria-controls="p-android" aria-selected="false">Android</button>
+    <button role="tab" id="t-pc" aria-controls="p-pc" aria-selected="false">Компьютер</button>
+  </div>
+
+  <section class="panel" id="p-ios" role="tabpanel" aria-labelledby="t-ios">
+    <ol class="steps">
+      <li><b>Откройте ссылку на приложение в Safari.</b><br><span class="muted">Если открыли из Telegram — нажмите ⋯ и выберите «Открыть в Safari».</span></li>
+      <li><b>Нажмите «Поделиться»</b> — квадрат со стрелкой вверх внизу экрана.</li>
+      <li><b>Выберите «На экран “Домой”»</b> и нажмите «Добавить».</li>
+      <li><b>Откройте Уникализатор с новой иконки</b> на экране телефона.</li>
+      <li><b>Введите код доступа</b> и нажмите «Войти». Готово — больше код вводить не нужно.</li>
+    </ol>
+  </section>
+
+  <section class="panel" id="p-android" role="tabpanel" aria-labelledby="t-android" hidden>
+    <ol class="steps">
+      <li><b>Откройте ссылку на приложение в Chrome.</b></li>
+      <li><b>Нажмите ⋮</b> в правом верхнем углу.</li>
+      <li><b>Выберите «Установить приложение»</b> или «Добавить на главный экран».</li>
+      <li><b>Откройте Уникализатор с новой иконки</b> на экране телефона.</li>
+      <li><b>Введите код доступа</b> и нажмите «Войти».</li>
+    </ol>
+  </section>
+
+  <section class="panel" id="p-pc" role="tabpanel" aria-labelledby="t-pc" hidden>
+    <ol class="steps">
+      <li><b>Откройте ссылку на приложение в Chrome или Edge.</b></li>
+      <li><b>Нажмите значок установки</b> справа в адресной строке (монитор со стрелкой) и выберите <span class="kbd">Установить</span>.</li>
+      <li><b>Откройте Уникализатор</b> из появившегося окна или с ярлыка на рабочем столе.</li>
+      <li><b>Введите код доступа</b> и нажмите «Войти».</li>
+    </ol>
+    <p class="muted" style="margin-top:12px">Готовые копии на компьютере сохраняются сразу в папку «Загрузки».</p>
+  </section>
+
+  <div class="box">
+    <h2>Как пользоваться</h2>
+    <ul>
+      <li>Выберите, сколько копий сделать — от 1 до 10.</li>
+      <li>Нажмите «Выбрать видео». Можно выбрать сразу несколько роликов.</li>
+      <li>Не блокируйте экран, пока идёт обработка.</li>
+      <li>Когда появится «Готово», нажмите «Сохранить в галерею» и выберите «Сохранить видео».</li>
+    </ul>
+    <p class="muted">После установки приложение работает без интернета.</p>
+  </div>
+
+  <div class="box">
+    <h2>Если что-то не получается</h2>
+    <ul>
+      <li>Код не подходит — проверьте буквы и цифры. Дефисы ставятся сами.</li>
+      <li>На iPhone нужна iOS 16.4 или новее.</li>
+      <li>Остались вопросы — <a href="https://t.me/+79923349020" target="_blank" rel="noopener">напишите в Telegram</a>.</li>
+    </ul>
+  </div>
+
+  <footer>Разработчик приложения — Мария Андреева</footer>
+</main>
+<script>
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function show(id) {
+  tabs.forEach((t) => {
+    const on = t.id === id;
+    t.setAttribute('aria-selected', on);
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+}
+tabs.forEach((t) => t.addEventListener('click', () => show(t.id)));
+// сразу открываем вкладку под устройство человека
+const ua = navigator.userAgent;
+if (/Android/i.test(ua)) show('t-android');
+else if (!/iPhone|iPad|iPod/i.test(ua) && !(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) show('t-pc');
+</script>
+</body>
+</html>
