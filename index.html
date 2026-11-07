@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Уникализатор — 10 уникальных копий ролика на телефоне</title>
+<meta name="description" content="Перезаливайте залетевшие Reels, тестируйте пробные ролики и дублируйте в TikTok и YouTube Shorts без повторного монтажа. Доступ навсегда за 990 ₽.">
+<meta property="og:title" content="Уникализатор — 10 уникальных копий ролика">
+<meta property="og:description" content="Перезалив Reels, пробные ролики, TikTok и Shorts без повторного монтажа. Доступ навсегда — 990 ₽.">
+<meta property="og:image" content="https://mdandreeva1985.github.io/unikalizator-site/og.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#ff5a36">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* Лендинг в одну колонку, mobile-first: обещание → телефон с приложением → зачем → что меняется → как → цены и выгода → вопросы */
+:root{
+  --bg:#f5f3f0; --surface:#ffffff; --ink:#151418; --muted:#6e6a72; --line:#e7e3dd; --soft:#eeeae4;
+  --a1:#ff5a36; --a2:#ff9d3c; --accent:#f2542d; --good:#1d8a4f; --good-bg:#e1f3e8; --strike:#a39fa6;
+  --f-display:"Unbounded","Onest",system-ui,sans-serif;
+  --f-body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --shadow:0 18px 50px rgba(40,25,10,.08);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111013; --surface:#1b1a1e; --ink:#f3f1ee; --muted:#a39fa8; --line:#2b2a30; --soft:#252429;
+  --good:#4cc283; --good-bg:#16301f; --strike:#6d6a72; --shadow:none; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111013; --surface:#1b1a1e; --ink:#f3f1ee; --muted:#a39fa8; --line:#2b2a30; --soft:#252429;
+  --good:#4cc283; --good-bg:#16301f; --strike:#6d6a72; --shadow:none; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--f-body);
+  padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+main{max-width:1040px;margin:0 auto;padding-block:max(28px,env(safe-area-inset-top)) 40px;display:flex;flex-direction:column;gap:88px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.02em}
+h1{font-size:clamp(34px,7vw,64px);line-height:1.02;font-weight:800}
+h2{font-size:clamp(26px,4.6vw,40px);line-height:1.1;font-weight:800}
+h3{font-size:18px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+.grad{background:linear-gradient(90deg,var(--a1),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font:700 13px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:56ch}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:720px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:62px;padding:0 28px;border-radius:20px;border:0;
+  background:linear-gradient(90deg,var(--a1),var(--a2));color:#fff;font:700 19px var(--f-body);text-decoration:none;
+  box-shadow:0 12px 28px rgba(255,100,50,.3);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.ghost:focus-visible,summary:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
+.ghost{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;text-decoration:none;border-bottom:2px solid var(--line);padding-bottom:2px}
+.small{font-size:14px;color:var(--muted)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.price-note{display:flex;flex-direction:column;line-height:1.2}
+.price-note b{font:800 24px var(--f-display)}
+.price-note span{font-size:14px;color:var(--muted)}
+.platforms{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:600}
+
+/* телефон с приложением */
+.phone{justify-self:center;width:min(310px,100%);aspect-ratio:9/18.5;border-radius:44px;background:#0e0d10;padding:11px;box-shadow:var(--shadow);position:relative}
+.screen{height:100%;border-radius:34px;background:#f4f2ee;color:#16161a;overflow:hidden;padding:30px 14px 14px;display:flex;flex-direction:column;gap:10px;font-size:11px}
+.screen .t{font:800 21px var(--f-display);background:linear-gradient(90deg,#ff5a36,#ff9a3c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.screen .st{color:#77737b;font-size:10px;margin-top:-6px}
+.scard{background:#fff;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:9px}
+.scap{font-size:8.5px;font-weight:700;letter-spacing:.12em;color:#77737b}
+.step{display:flex;align-items:center;justify-content:space-between}
+.step i{width:30px;height:30px;border-radius:10px;background:#ece8e2;display:grid;place-items:center;font-style:normal;font-size:16px}
+.step b{font:800 28px var(--f-display)}
+.qk{display:flex;gap:4px}.qk span{flex:1;text-align:center;padding:5px 0;border-radius:8px;border:1px solid #ebe7e1;font-weight:600}
+.qk .on{background:#16161a;color:#fff;border-color:#16161a}
+.spick{height:34px;border-radius:12px;background:linear-gradient(90deg,#ff5a36,#ff9a3c);color:#fff;font-weight:700;display:grid;place-items:center;font-size:12px}
+.sh{font:800 14px var(--f-display);margin-top:2px}
+.svid{display:flex;gap:8px;background:#fff;border-radius:14px;padding:8px}
+.th{width:34px;height:46px;border-radius:8px;flex:none;background:linear-gradient(160deg,#e9b89a,#8d5b45 60%,#2c2420)}
+.th.b{background:linear-gradient(160deg,#cfd9c8,#7c8f6e 55%,#2f3a2a)}
+.svi{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+.svt{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:10.5px}
+.pill{padding:2px 7px;border-radius:999px;font-size:8.5px;font-weight:700}
+.pill.w{background:#fff0e6;color:#ff5a36}.pill.d{background:#e3f5ea;color:#23a55a}
+.sbar{height:5px;border-radius:4px;background:#ece8e2;overflow:hidden}.sbar i{display:block;height:100%;background:linear-gradient(90deg,#ff5a36,#ff9a3c)}
+.sbar.done i{background:#23a55a}
+.sc{color:#77737b;font-size:9px}
+
+/* ЗАЧЕМ */
+.uses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.use{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.use .ic{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--a1),var(--a2));display:grid;place-items:center;color:#fff}
+.use .ic svg{width:22px;height:22px}
+.use p{color:var(--muted)}
+
+/* ЧТО МЕНЯЕТСЯ */
+.changes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.list li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.list li:first-child{border-top:1px solid var(--line)}
+.list b{font-weight:600}
+.list span{color:var(--muted)}
+.keep{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.keep ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.keep li{display:flex;gap:10px;align-items:flex-start}
+.keep li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;
+  background:var(--good-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%231d8a4f' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.anywhere{display:flex;flex-direction:column;gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(24px,4vw,44px)}
+.devices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.dev{background:var(--soft);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.dev svg{width:30px;height:30px;color:var(--accent);margin-bottom:6px}
+.dev b{font:600 17px var(--f-display);letter-spacing:-.01em}
+.dev span{font-size:14px;color:var(--muted);line-height:1.35}
+.dev.off{background:linear-gradient(150deg,var(--a1),var(--a2));color:#fff}
+.dev.off svg{color:#fff}
+.dev.off span{color:rgba(255,255,255,.88)}
+
+/* КАК */
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:s}
+.how li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:8px;counter-increment:s}
+.how li::before{content:counter(s);font:800 34px var(--f-display);line-height:1}
+.how{margin:0;padding:0}
+.how p{color:var(--muted)}
+
+/* ЦЕНЫ */
+.pricing{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.plan{border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.plan.them{background:var(--surface);border:1px solid var(--line)}
+.plan.us{background:linear-gradient(150deg,#ff5a36,#ff8e3c);color:#fff;box-shadow:0 22px 50px rgba(255,90,54,.28)}
+.plan h3{font-size:20px}
+.rows{display:flex;flex-direction:column}
+.rows div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.rows div:last-child{border-bottom:0}
+.rows span:first-child{color:var(--muted)}
+.rows b{white-space:nowrap}
+td{white-space:nowrap}
+.big-price{font:800 clamp(48px,9vw,68px)/1 var(--f-display);letter-spacing:-.03em}
+.us ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.us li{display:flex;gap:10px}
+.us li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:#fff;margin-top:9px}
+.btn.white{background:#fff;color:#e8462a;box-shadow:none;width:100%}
+.us .tiny{font-size:14px;opacity:.85}
+
+/* ВЫГОДА */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.calc label{font-weight:600}
+.calc input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.months{font:800 22px var(--f-display)}
+.sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.sum div{border-radius:18px;padding:16px;background:var(--soft);display:flex;flex-direction:column;gap:4px;min-width:0}
+.sum span{font-size:14px;color:var(--muted)}
+.sum b{font:800 clamp(20px,3.4vw,28px) var(--f-display);font-variant-numeric:tabular-nums}
+.sum .save{background:var(--good-bg)}
+.sum .save b{color:var(--good)}
+.tablebox{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:480px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}
+th{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.save{color:var(--good);font-weight:700}
+td s{color:var(--strike)}
+
+/* ВОПРОСЫ */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:820px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0 20px}
+summary{cursor:pointer;list-style:none;padding:18px 28px 18px 0;font-weight:600;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:14px;font:400 26px var(--f-body);color:var(--muted)}
+details[open] summary::after{content:"−"}
+details p{padding:0 0 18px;color:var(--muted)}
+
+/* ФИНАЛ */
+.final{background:#151418;color:#f3f1ee;border-radius:32px;padding:clamp(28px,5vw,56px);display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.final p{color:#b9b5bd;max-width:52ch}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:22px}
+footer a{color:var(--accent);font-weight:600;text-decoration:none}
+.tg{display:inline-flex;align-items:center;gap:6px}
+.tg svg{width:16px;height:16px}
+
+@media (max-width:820px){
+  main{gap:68px}
+  .hero,.changes,.pricing{grid-template-columns:minmax(0,1fr)}
+  .phone{width:min(270px,80%)}
+  .how,.trio{grid-template-columns:minmax(0,1fr)}
+  .devices{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .list li{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+@media (max-width:560px){
+  .uses{grid-template-columns:minmax(0,1fr)}
+  .sum{grid-template-columns:minmax(0,1fr)}
+  .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Приложение для авторов Reels</span>
+      <h1>10 уникальных копий ролика — <span class="grad">за пару минут</span></h1>
+      <p class="lead">Перезаливайте залетевшие ролики, тестируйте их в пробном режиме Instagram и дублируйте в TikTok и YouTube Shorts. Без повторного монтажа — прямо на телефоне.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ</a>
+        <div class="price-note"><b>990 ₽</b><span>один раз и навсегда</span></div>
+      </div>
+      <div class="platforms" aria-label="Площадки">
+        <span class="chip">Instagram Reels</span><span class="chip">Пробные Reels</span><span class="chip">TikTok</span><span class="chip">YouTube Shorts</span><span class="chip">VK Клипы</span>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="Так выглядит приложение">
+      <div class="screen">
+        <span class="t">Уникализатор</span>
+        <span class="st">Делает из одного ролика до 10 уникальных копий</span>
+        <div class="scard">
+          <span class="scap">СКОЛЬКО КОПИЙ СДЕЛАТЬ</span>
+          <div class="step"><i>−</i><b>10</b><i>+</i></div>
+          <div class="qk"><span>1</span><span>3</span><span>5</span><span class="on">10</span></div>
+          <div class="spick">Выбрать видео</div>
+        </div>
+        <span class="sh">Мои видео</span>
+        <div class="svid"><span class="th"></span><div class="svi"><div class="svt">Залетевший рилс<span class="pill d">Готово</span></div><span class="sc">10 из 10 копий</span><div class="sbar done"><i style="width:100%"></i></div></div></div>
+        <div class="svid"><span class="th b"></span><div class="svi"><div class="svt">Рецепт<span class="pill w">Обработка</span></div><span class="sc">6 из 10 копий</span><div class="sbar"><i style="width:63%"></i></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗАЧЕМ -->
+  <section style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head">
+      <span class="eyebrow">Для чего</span>
+      <h2>Один удачный ролик — много публикаций</h2>
+      <p class="lead">Каждая копия для площадки выглядит как новое видео, а вы не тратите время на повторный монтаж.</p>
+    </div>
+    <div class="uses">
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3M20 4v4h-4M20 12a8 8 0 0 1-14 5.3M4 20v-4h4"/></svg></span>
+        <h3>Перезалив залетевших Reels</h3>
+        <p>Ролик набрал просмотры — сделайте 10 копий и выкладывайте их снова, давая видео ещё несколько шансов.</p>
+      </div>
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/></svg></span>
+        <h3>Пробный режим Instagram</h3>
+        <p>Тестируйте разные версии одного ролика в пробных Reels и оставляйте ту, что зашла лучше.</p>
+      </div>
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/></svg></span>
+        <h3>TikTok, Shorts и VK Клипы</h3>
+        <p>Один ролик — отдельная копия под каждую площадку, чтобы они не выглядели как одно и то же видео.</p>
+      </div>
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span>
+        <h3>Экономия времени</h3>
+        <p>Не нужно садиться за монтаж второй раз. Выбрали ролик, нажали кнопку — копии готовы.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ УДОБНО -->
+  <section style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head">
+      <span class="eyebrow">Результат</span>
+      <h2>10 разных роликов вместо одного</h2>
+    </div>
+    <div class="trio">
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <h3>Каждая копия — новое видео</h3>
+        <p>Все 10 копий отличаются и от оригинала, и друг от друга. Для площадки это разные ролики.</p>
+      </div>
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
+        <h3>Качество сохраняется</h3>
+        <p>Чёткая картинка и чистый звук. Копии выглядят так же хорошо, как ваш оригинал.</p>
+      </div>
+      <div class="use">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+        <h3>Быстро</h3>
+        <p>Одна копия готова меньше чем за минуту. Десять — пока вы пьёте кофе.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- РАБОТАЕТ ВЕЗДЕ -->
+  <section class="anywhere">
+    <div class="sec-head">
+      <span class="eyebrow">Где работает</span>
+      <h2>Работает даже без интернета</h2>
+      <p class="lead">Установите приложение один раз — и пользуйтесь где угодно: в дороге, в самолёте, без Wi-Fi и мобильной сети.</p>
+    </div>
+    <div class="devices">
+      <div class="dev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+        <b>iPhone</b><span>значок на экране «Домой»</span>
+      </div>
+      <div class="dev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M6 6h12M6 18h12"/></svg>
+        <b>Android</b><span>как обычное приложение</span>
+      </div>
+      <div class="dev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        <b>Компьютер</b><span>Windows и Mac, ещё быстрее</span>
+      </div>
+      <div class="dev off">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 4.2-2.6M10.7 5.1A15 15 0 0 1 22 8.8M5 12.5a10 10 0 0 1 3.5-2M16.1 10.7A10 10 0 0 1 19 12.5M8.5 16a5 5 0 0 1 5.8-.6M12 20h.01M3 3l18 18"/></svg>
+        <b>Без интернета</b><span>не нужен ни Wi-Fi, ни мобильный интернет</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК -->
+  <section style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head">
+      <span class="eyebrow">Как пользоваться</span>
+      <h2>Три шага</h2>
+    </div>
+    <ol class="how">
+      <li><h3>Выберите ролик</h3><p>Из галереи телефона. Можно сразу несколько.</p></li>
+      <li><h3>Укажите число копий</h3><p>От 1 до 10. Приложение покажет прогресс по каждому видео.</p></li>
+      <li><h3>Сохраните в галерею</h3><p>Одной кнопкой — и выкладывайте, куда нужно.</p></li>
+    </ol>
+  </section>
+
+  <!-- ЦЕНЫ -->
+  <section id="price" style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head">
+      <span class="eyebrow">Цена</span>
+      <h2>Без подписки. Платите один раз</h2>
+      <p class="lead">Похожие боты-уникализаторы берут оплату каждый месяц и ограничивают число роликов.</p>
+    </div>
+    <div class="pricing">
+      <div class="plan them">
+        <h3>Подписка в боте-уникализаторе</h3>
+        <div class="rows">
+          <div><span>1 месяц, до 10 роликов в день</span><b>1 500 ₽</b></div>
+          <div><span>3 месяца</span><b>3 500 ₽</b></div>
+          <div><span>6 месяцев, безлимит</span><b>6 000 ₽</b></div>
+          <div><span>Год (2 × 6 месяцев)</span><b>12 000 ₽</b></div>
+        </div>
+        <p class="small">Каждый период нужно оплачивать заново.</p>
+      </div>
+      <div class="plan us">
+        <h3>Уникализатор</h3>
+        <span class="big-price">990 ₽</span>
+        <span class="tiny">одна оплата — доступ навсегда</span>
+        <ul>
+          <li>Без ежемесячных платежей</li>
+          <li>Без лимита на число роликов</li>
+          <li>До 10 копий из каждого ролика</li>
+          <li>Все будущие обновления</li>
+        </ul>
+        <a class="btn white" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВЫГОДА -->
+  <section style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head">
+      <span class="eyebrow">Выгода</span>
+      <h2>Сколько вы сэкономите</h2>
+      <p class="lead">Сравнение с самой дешёвой комбинацией тарифов подписки на тот же срок.</p>
+    </div>
+    <div class="calc">
+      <div class="calc-top">
+        <label for="m">Сколько месяцев вы будете делать контент</label>
+        <span class="months" id="mlabel">12 месяцев</span>
+      </div>
+      <input type="range" id="m" min="1" max="24" value="12" aria-describedby="mlabel">
+      <div class="sum">
+        <div><span>Подписка за этот срок</span><b id="sub">12 000 ₽</b></div>
+        <div><span>Уникализатор</span><b>990 ₽</b></div>
+        <div class="save"><span>Ваша выгода</span><b id="save">11 010 ₽</b></div>
+      </div>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>Срок</th><th>Подписка</th><th>Уникализатор</th><th>Выгода</th></tr></thead>
+          <tbody id="tbl"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ВОПРОСЫ -->
+  <section style="display:flex;flex-direction:column;gap:28px">
+    <div class="sec-head"><span class="eyebrow">Вопросы</span><h2>Частые вопросы</h2></div>
+    <div class="faq">
+      <details><summary>Как получить доступ после оплаты?</summary><p>Напишите в Telegram по кнопке «Купить доступ». После оплаты вы получите ссылку на приложение и короткую инструкцию, как установить его на телефон.</p></details>
+      <details><summary>Нужен ли компьютер?</summary><p>Нет. Всё работает прямо на телефоне. Компьютер можно использовать по желанию — там обработка идёт быстрее.</p></details>
+      <details><summary>Работает на iPhone?</summary><p>Да, на iPhone с iOS 16.4 и новее, а также на Android и компьютере. Приложение добавляется на экран «Домой» и открывается как обычное.</p></details>
+      <details><summary>Нужен ли интернет?</summary><p>Только чтобы один раз установить приложение. Дальше оно работает без Wi-Fi и мобильного интернета — хоть в самолёте.</p></details>
+      <details><summary>Не испортится ли качество?</summary><p>Нет. Копии сохраняются в высоком качестве: чёткая картинка, 30 кадров в секунду, чистый звук.</p></details>
+      <details><summary>Гарантирует ли это, что площадка не узнает ролик?</summary><p>Каждая копия заметно отличается от оригинала и от других копий: кадр, цвет, скорость, звук и служебные данные. Но стопроцентной гарантии не может дать ни один уникализатор — алгоритмы площадок постоянно меняются.</p></details>
+      <details><summary>Сколько длится обработка?</summary><p>Зависит от телефона и длины ролика. Обычно от нескольких секунд до минуты на одну копию. Пока идёт работа, экран лучше не блокировать.</p></details>
+    </div>
+  </section>
+
+  <!-- ФИНАЛ -->
+  <section class="final">
+    <span class="eyebrow">Доступ навсегда</span>
+    <h2>Один залетевший ролик — десять новых шансов</h2>
+    <p>Перестаньте монтировать одно и то же по второму кругу. 990 ₽ один раз, без подписок и лимитов.</p>
+    <a class="btn" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+  </section>
+
+  <footer>
+    <span>Разработчик приложения — Мария Андреева</span>
+    <span class="tg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#2AABEE"/><path fill="#fff" d="M5.4 11.8l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.3-.1l-7 4.4-3-.9c-.6-.2-.7-.6.1-.9z"/></svg><a href="https://t.me/+79923349020" target="_blank" rel="noopener">Связаться</a></span>
+  </footer>
+</main>
+
+<script>
+// Самая дешёвая комбинация тарифов подписки на m месяцев: 1 мес — 1500, 3 мес — 3500, 6 мес — 6000
+const PLANS = [[1, 1500], [3, 3500], [6, 6000]];
+const OURS = 990;
+function subCost(m) {
+  const best = [0];
+  for (let i = 1; i <= m; i++) {
+    best[i] = Infinity;
+    for (const [len, price] of PLANS) best[i] = Math.min(best[i], (best[Math.max(0, i - len)]) + price);
+  }
+  return best[m];
+}
+const rub = (n) => n.toLocaleString('ru-RU') + ' ₽';
+const monthsWord = (m) => (m % 10 === 1 && m % 100 !== 11) ? 'месяц' : (m % 10 >= 2 && m % 10 <= 4 && (m % 100 < 12 || m % 100 > 14)) ? 'месяца' : 'месяцев';
+const slider = document.getElementById('m');
+function update() {
+  const m = +slider.value, s = subCost(m);
+  document.getElementById('mlabel').textContent = `${m} ${monthsWord(m)}`;
+  document.getElementById('sub').textContent = rub(s);
+  document.getElementById('save').textContent = rub(s - OURS);
+}
+slider.addEventListener('input', update);
+update();
+document.getElementById('tbl').innerHTML = [[1, '1 месяц'], [2, '2 месяца'], [3, '3 месяца'], [6, 'Полгода'], [12, 'Год']]
+  .map(([m, t]) => `<tr><td>${t}</td><td><s>${rub(subCost(m))}</s></td><td>${rub(OURS)}</td><td class="save">+${rub(subCost(m) - OURS)}</td></tr>`).join('');
+</script>
+</body>
+</html>
