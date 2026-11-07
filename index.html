@@ -211,7 +211,7 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
       <h1>10 уникальных копий ролика — <span class="grad">за пару минут</span></h1>
       <p class="lead">Перезаливайте залетевшие ролики, тестируйте их в пробном режиме Instagram и дублируйте в TikTok и YouTube Shorts. Без повторного монтажа — прямо на телефоне.</p>
       <div class="cta-row">
-        <a class="btn buy" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ</a>
+        <a class="btn buy" href="https://t.me/marya_andreeva" target="_blank" rel="noopener">Купить доступ</a>
         <div class="price-note"><b>990 ₽</b><span>один раз и навсегда</span></div>
       </div>
       <div class="platforms" aria-label="Площадки">
@@ -360,7 +360,7 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
           <li>До 10 копий из каждого ролика</li>
           <li>Все будущие обновления</li>
         </ul>
-        <a class="btn white buy" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+        <a class="btn white buy" href="https://t.me/marya_andreeva" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
       </div>
     </div>
   </section>
@@ -411,12 +411,12 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
     <span class="eyebrow">Доступ навсегда</span>
     <h2>Один залетевший ролик — десять новых шансов</h2>
     <p>Перестаньте монтировать одно и то же по второму кругу. 990 ₽ один раз, без подписок и лимитов.</p>
-    <a class="btn buy" href="https://t.me/+79923349020" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+    <a class="btn buy" href="https://t.me/marya_andreeva" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
   </section>
 
   <footer>
     <span>Разработчик приложения — Мария Андреева</span>
-    <span class="tg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#2AABEE"/><path fill="#fff" d="M5.4 11.8l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.3-.1l-7 4.4-3-.9c-.6-.2-.7-.6.1-.9z"/></svg><a href="https://t.me/+79923349020" target="_blank" rel="noopener">Связаться</a></span>
+    <span class="tg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#2AABEE"/><path fill="#fff" d="M5.4 11.8l11.6-4.5c.5-.2 1 .1.8.9l-2 9.3c-.1.6-.5.8-1 .5l-3-2.2-1.4 1.4c-.2.2-.3.3-.6.3l.2-3.1 5.6-5.1c.2-.2 0-.3-.3-.1l-7 4.4-3-.9c-.6-.2-.7-.6.1-.9z"/></svg><a href="https://t.me/marya_andreeva" target="_blank" rel="noopener">Связаться</a></span>
   </footer>
 </main>
 
@@ -424,11 +424,11 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
 // Самая дешёвая комбинация тарифов подписки на m месяцев: 1 мес — 1500, 3 мес — 3500, 6 мес — 6000
 // Кнопка «Купить»: открываем чат в Telegram с готовым текстом.
 // Если Telegram не подставит текст сам, он уже скопирован — достаточно вставить.
-const TG = 'https://t.me/+79923349020';
+const TG = 'https://t.me/marya_andreeva';
 const BUY_TEXT = 'Здравствуйте! Хочу купить доступ к Уникализатору за 990 ₽';
 const toast = document.createElement('div');
 toast.className = 'toast'; toast.setAttribute('role', 'status');
-toast.textContent = 'Текст сообщения скопирован — вставьте его в чат и отправьте';
+toast.textContent = 'Открываем Telegram — сообщение уже готово, просто отправьте его';
 document.body.appendChild(toast);
 document.querySelectorAll('a.buy').forEach((a) => {
   a.href = TG + '?text=' + encodeURIComponent(BUY_TEXT);
