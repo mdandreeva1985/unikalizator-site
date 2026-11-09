@@ -87,6 +87,37 @@ p{margin:0}
 .sbar.done i{background:#23a55a}
 .sc{color:#77737b;font-size:9px}
 
+/* кнопка-обводка и анимация телефона */
+.btn,.btn-outline{text-align:center;line-height:1.2}
+main{overflow-x:clip}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;height:62px;padding:0 24px;border-radius:20px;border:2px solid var(--ink);
+  color:var(--ink);font:700 18px var(--f-body);text-decoration:none;transition:transform .15s}
+.btn-outline:hover{transform:translateY(-2px)}
+.btn-outline:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
+.phone-wrap{position:relative;justify-self:center;width:min(310px,100%)}
+.phone-wrap .phone{width:100%;position:relative;z-index:2;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fly{position:absolute;inset:0;z-index:1;pointer-events:none}
+.fc{position:absolute;left:50%;top:58%;width:54px;height:96px;margin:-48px 0 0 -27px;border-radius:12px;background:#fff;box-shadow:0 10px 24px rgba(40,20,10,.18);
+  padding:4px;animation:fly 1.7s cubic-bezier(.2,.7,.2,1) forwards}
+.fc::before{content:"";display:block;height:100%;border-radius:9px;background:var(--thumb,linear-gradient(160deg,#e9b89a,#8d5b45 60%,#2c2420))}
+.fc::after{content:"";position:absolute;left:50%;top:50%;margin:-8px 0 0 -5px;border-left:12px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;opacity:.95}
+@keyframes fly{
+  0%{transform:translate(0,0) scale(.4) rotate(0);opacity:0}
+  15%{opacity:1}
+  100%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(var(--rot));opacity:0}}
+.btn-outline.light{border-color:rgba(255,255,255,.7);color:#fff}
+.trial-link{color:#fff;font-weight:600;text-align:center;text-decoration:underline;text-underline-offset:3px;opacity:.95}
+.x10{position:absolute;right:-6px;top:6%;z-index:3;padding:8px 14px;border-radius:999px;background:var(--ink);color:#fff;font:800 20px var(--f-display);
+  box-shadow:0 10px 24px rgba(0,0,0,.2);transform:scale(.6);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.x10.show{transform:scale(1);opacity:1}
+.sbar i{transition:width .35s ease}
+/* плавное появление блоков при прокрутке (без JS всё сразу видно) */
+.js-reveal .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.js-reveal .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .phone-wrap .phone{animation:none}.fc{display:none}.js-reveal .rv{opacity:1;transform:none;transition:none}}
+
 /* ЗАЧЕМ */
 .uses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .use{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -183,7 +214,7 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
 @media (max-width:820px){
   main{gap:68px}
   .hero,.changes,.pricing{grid-template-columns:minmax(0,1fr)}
-  .phone{width:min(270px,80%)}
+  .phone-wrap{width:min(270px,78%)}
   .how,.trio{grid-template-columns:minmax(0,1fr)}
   .devices{grid-template-columns:repeat(2,minmax(0,1fr))}
   .dev{padding:16px 14px}
@@ -193,7 +224,7 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
 @media (max-width:560px){
   .uses{grid-template-columns:minmax(0,1fr)}
   .sum{grid-template-columns:minmax(0,1fr)}
-  .btn{width:100%}
+  .btn,.btn-outline{width:100%}
 }
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
@@ -208,14 +239,18 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
       <h1>10 уникальных копий ролика — <span class="grad">за пару минут</span></h1>
       <p class="lead">Перезаливайте залетевшие ролики, тестируйте их в пробном режиме Instagram и дублируйте в TikTok и YouTube Shorts. Без повторного монтажа — прямо на телефоне.</p>
       <div class="cta-row">
-        <a class="btn buy" href="https://t.me/m/KYb3AI8bOTgy" target="_blank" rel="noopener">Купить доступ</a>
-        <div class="price-note"><b>990 ₽</b><span>один раз и навсегда</span></div>
+        <a class="btn" href="https://mdandreeva1985.github.io/unikalizator/" target="_blank" rel="noopener">Попробовать 1 день бесплатно</a>
+        <a class="btn-outline buy" href="https://t.me/m/KYb3AI8bOTgy" target="_blank" rel="noopener">Купить за 990 ₽</a>
       </div>
+      <p class="small">Без регистрации. Первые 24 часа — бесплатно, дальше 990 ₽ один раз и навсегда.</p>
       <div class="platforms" aria-label="Площадки">
         <span class="chip">Instagram Reels</span><span class="chip">Пробные Reels</span><span class="chip">TikTok</span><span class="chip">YouTube Shorts</span><span class="chip">VK Клипы</span>
       </div>
     </div>
 
+    <div class="phone-wrap">
+    <div class="fly" id="fly" aria-hidden="true"></div>
+    <span class="x10" id="x10" aria-hidden="true">×10</span>
     <div class="phone" aria-label="Так выглядит приложение">
       <div class="screen">
         <span class="t">Уникализатор</span>
@@ -228,8 +263,9 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
         </div>
         <span class="sh">Мои видео</span>
         <div class="svid"><span class="th"></span><div class="svi"><div class="svt">Залетевший рилс<span class="pill d">Готово</span></div><span class="sc">10 из 10 копий</span><div class="sbar done"><i style="width:100%"></i></div></div></div>
-        <div class="svid"><span class="th b"></span><div class="svi"><div class="svt">Рецепт<span class="pill w">Обработка</span></div><span class="sc">6 из 10 копий</span><div class="sbar"><i style="width:63%"></i></div></div></div>
+        <div class="svid"><span class="th b"></span><div class="svi"><div class="svt">Рецепт<span class="pill w" id="aPill">Обработка</span></div><span class="sc" id="aCount">6 из 10 копий</span><div class="sbar" id="aBarBox"><i id="aBar" style="width:63%"></i></div></div></div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -358,6 +394,7 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
           <li>Все будущие обновления</li>
         </ul>
         <a class="btn white buy" href="https://t.me/m/KYb3AI8bOTgy" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+        <a class="trial-link" href="https://mdandreeva1985.github.io/unikalizator/" target="_blank" rel="noopener">или сначала попробуйте 1 день бесплатно →</a>
       </div>
     </div>
   </section>
@@ -408,8 +445,11 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
   <section class="final">
     <span class="eyebrow">Доступ навсегда</span>
     <h2>Один залетевший ролик — десять новых шансов</h2>
-    <p>Перестаньте монтировать одно и то же по второму кругу. 990 ₽ один раз, без подписок и лимитов.</p>
-    <a class="btn buy" href="https://t.me/m/KYb3AI8bOTgy" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+    <p>Перестаньте монтировать одно и то же по второму кругу. Попробуйте 1 день бесплатно, а дальше — 990 ₽ один раз, без подписок и лимитов.</p>
+    <div class="cta-row">
+      <a class="btn buy" href="https://t.me/m/KYb3AI8bOTgy" target="_blank" rel="noopener">Купить доступ за 990 ₽</a>
+      <a class="btn-outline light" href="https://mdandreeva1985.github.io/unikalizator/" target="_blank" rel="noopener">Попробовать бесплатно</a>
+    </div>
   </section>
 
   <footer>
@@ -420,6 +460,63 @@ footer a{color:var(--accent);font-weight:600;text-decoration:none}
 
 <script>
 // Самая дешёвая комбинация тарифов подписки на m месяцев: 1 мес — 1500, 3 мес — 3500, 6 мес — 6000
+
+// --- анимация в телефоне: идёт обработка, «вылетают» готовые копии ---
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bar = document.getElementById('aBar'), cnt = document.getElementById('aCount'),
+        pill = document.getElementById('aPill'), box = document.getElementById('aBarBox'),
+        fly = document.getElementById('fly'), x10 = document.getElementById('x10');
+  if (!bar || reduce) { x10?.classList.add('show'); return; }
+  const thumbs = ['linear-gradient(160deg,#cfd9c8,#7c8f6e 55%,#2f3a2a)', 'linear-gradient(160deg,#e9b89a,#8d5b45 60%,#2c2420)'];
+  let k = 0;
+  function spawn(i) {
+    const c = document.createElement('div');
+    c.className = 'fc';
+    const side = i % 2 ? 1 : -1;
+    c.style.setProperty('--dx', side * (120 + Math.random() * 70) + 'px');
+    c.style.setProperty('--dy', -(40 + Math.random() * 160) + 'px');
+    c.style.setProperty('--rot', side * (8 + Math.random() * 14) + 'deg');
+    c.style.setProperty('--thumb', thumbs[1]);
+    fly.appendChild(c);
+    setTimeout(() => c.remove(), 1800);
+  }
+  function tick() {
+    k++;
+    if (k <= 10) {
+      cnt.textContent = `${k} из 10 копий`;
+      bar.style.width = k * 10 + '%';
+      spawn(k);
+      if (k === 10) { pill.textContent = 'Готово'; pill.className = 'pill d'; box.classList.add('done'); x10.classList.add('show'); }
+      setTimeout(tick, 650);
+    } else {
+      setTimeout(() => {   // начинаем заново
+        k = 0; cnt.textContent = '0 из 10 копий'; bar.style.width = '0%';
+        pill.textContent = 'Обработка'; pill.className = 'pill w'; box.classList.remove('done'); x10.classList.remove('show');
+        setTimeout(tick, 900);
+      }, 2600);
+    }
+  }
+  cnt.textContent = '0 из 10 копий'; bar.style.width = '0%';
+  setTimeout(tick, 900);
+})();
+
+// --- плавное появление блоков при прокрутке ---
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els = [...document.querySelectorAll('main > section:not(.hero)')];
+  // прячем только то, что ниже первого экрана — всё остальное видно сразу
+  els.forEach((el) => { if (el.getBoundingClientRect().top > innerHeight) el.classList.add('rv'); });
+  document.documentElement.classList.add('js-reveal');
+  const check = () => els.forEach((el) => {
+    if (el.classList.contains('rv') && !el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight * 0.92) el.classList.add('in');
+  });
+  addEventListener('scroll', check, { passive: true });
+  addEventListener('resize', check);
+  check();
+  // страховка: что бы ни случилось, через 2,5 с после прокрутки всё становится видимым
+  let t; addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(() => els.forEach((el) => el.classList.add('in')), 2500); }, { passive: true });
+})();
 
 const PLANS = [[1, 1500], [3, 3500], [6, 6000]];
 const OURS = 990;
